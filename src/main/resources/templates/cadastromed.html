@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign Up - CodeJava</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>TESTE CADASTRO MEDICO</h1>
+    </div>
+    <form th:action="@{/medico_registro}" th:object="${medico}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">E-mail: </label>
+                <div class="col-8">
+                    <input type="email" th:field="*{email}" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Senha: </label>
+                <div class="col-8">
+                    <input type="password" th:field="*{senha}" class="form-control"
+                           required minlength="6" maxlength="10"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Nome: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{nome}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">CPF: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{cpf}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">CRM: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{crm}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Endereco Pessoal: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{enderecopessoal}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Telefone: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{telefone}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Endereço Consultório: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{enderecoconsultorio}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Especialidade: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{especialidade}" class="form-control"
+                           required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container text-center">
+    <h3><a href="/">Menu</a></h3>
+</div>
+</body>
+</html>
