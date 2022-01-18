@@ -24,6 +24,9 @@ public class Consulta {
     @Column(nullable = false)
     private String descricao;
 
+    @Column(nullable = true)
+    private String linkvideoconf;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;

@@ -21,8 +21,6 @@ public class PedidoConsulta {
     @Column(nullable = false)
     private String descricao;
 
-    @Column(nullable = true)
-    private Boolean atendida;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "paciente_id", nullable = false)

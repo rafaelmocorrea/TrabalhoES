@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedido </title>
+</head>
+<body>
+
+<div>
+    <h3>Lista de Pedidos</h3>
+    <table>
+        <tbody>
+        <tr>
+            <td>Nome do paciente:</td>
+            <td th:text="${pedidoDTO.paciente_nome}" />
+        </tr>
+        <tr>
+            <td>CPF:</td>
+            <td th:text="${pedidoDTO.paciente_cpf}"/>
+        </tr>
+        <tr>
+            <td>Descricao:</td>
+            <td th:text="${pedidoDTO.descricao}"/>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/menumedico/aceitapedido/'+${pedidoDTO.pedido_id}}">Aceitar Pedido</a>
+    <br>
+    <a href="/menumedico">Menu</a>
+</div>
+
+</body>
+</html>

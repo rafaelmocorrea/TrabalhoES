@@ -33,7 +33,7 @@ public class MedicoDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return medico.getNome();
+        return medico.getEmail();
     }
 
     @Override

@@ -40,10 +40,6 @@ public class PedidoConsultaService {
         return pedidoConsultaRepository.findAllWithID(p);
     }
 
-    public List<PedidoConsulta> listaTodosPedidosDisponiveis() {
-        return pedidoConsultaRepository.findAllAvailable();
-    }
-
     public List<PedidoConsulta> listaTodosComEspecialidade(String e) {
         return pedidoConsultaRepository.findAllWithE(e);
     }

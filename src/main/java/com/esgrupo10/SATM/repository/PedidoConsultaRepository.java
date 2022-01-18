@@ -12,9 +12,7 @@ public interface PedidoConsultaRepository extends JpaRepository<PedidoConsulta, 
     @Query(value = "SELECT u FROM PedidoConsulta u WHERE u.paciente = ?1")
     public List<PedidoConsulta> findAllWithID(Paciente p);
 
-    @Query("SELECT u FROM PedidoConsulta u WHERE u.descricao = ?1 AND u.atendida=False")
+    @Query("SELECT u FROM PedidoConsulta u WHERE u.especialidade = ?1")
     public List<PedidoConsulta> findAllWithE(String s);
 
-    @Query("SELECT u FROM PedidoConsulta u WHERE u.atendida=False")
-    public List<PedidoConsulta> findAllAvailable();
 }

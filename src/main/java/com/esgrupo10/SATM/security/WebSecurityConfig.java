@@ -62,8 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/menumedico").access("hasAuthority('MEDICO')")
-                .antMatchers("/menupaciente").access("hasAnyAuthority('PACIENTE','MEDICO')")
+                .antMatchers("/menumedico/**").access("hasAuthority('MEDICO')")
+                .antMatchers("/menupaciente/**").access("hasAnyAuthority('PACIENTE','MEDICO')")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
