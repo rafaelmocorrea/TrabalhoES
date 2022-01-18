@@ -19,10 +19,11 @@
     <tr th:each="pedido:${pedidos}">
       <td th:text="${pedido.descricao}" />
       <td th:text="${pedido.especialidade}"/>
-      <td><a th:href="@{'/deletaconsulta/'+${pedido.id}}">Delete</a></td>
+      <td><a th:href="@{'/menupaciente/deletaconsulta/'+${pedido.id}}">Delete</a></td>
     </tr>
     </tbody>
   </table>
+  <a href="/menupaciente">Menu</a>
 </div>
 
 </body>

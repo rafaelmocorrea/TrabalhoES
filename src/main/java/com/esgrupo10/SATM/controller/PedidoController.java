@@ -1,6 +1,7 @@
 package com.esgrupo10.SATM.controller;
 
 import com.esgrupo10.SATM.details.PacienteDetails;
+import com.esgrupo10.SATM.model.Paciente;
 import com.esgrupo10.SATM.model.PedidoConsulta;
 import com.esgrupo10.SATM.service.PacienteService;
 import com.esgrupo10.SATM.service.PedidoConsultaService;
@@ -24,13 +25,13 @@ public class PedidoController {
     @Autowired
     PacienteService pacienteService;
 
-    @GetMapping("/pedidoconsulta")
+    @GetMapping("/menupaciente/pedidoconsulta")
     public String cadastraConsulta(Model model) {
         model.addAttribute("pedidoconsulta", new PedidoConsulta());
         return "cadastracons";
     }
 
-    @PostMapping("/pedido_registro")
+    @PostMapping("/menupaciente/pedido_registro")
     public String pedidoConsultaRegistro(PedidoConsulta ped) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
@@ -44,14 +45,23 @@ public class PedidoController {
         return pedidoConsultaService.criaPedido(ped);
     }
 
-    @GetMapping("/gerenciarpedidos")
+    @GetMapping("/menupaciente/gerenciarpedidos")
     public String listaPedidos(Model model) {
-        List<PedidoConsulta> pedidos = pedidoConsultaService.listaPedidos();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof PacienteDetails) {
+            username = ((PacienteDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Paciente pac = pacienteService.encontraPorEmail(username);
+        List<PedidoConsulta> pedidos = pedidoConsultaService.listaPedidosUsuario(pac);
+
         model.addAttribute("pedidos",pedidos);
         return "listapedidos";
     }
 
-    @GetMapping("/deletaconsulta/{consId}")
+    @GetMapping("/menupaciente/deletaconsulta/{consId}")
     public String deletaConsulta(@PathVariable Long consId) {
         pedidoConsultaService.deletaPedido(pedidoConsultaService.getPedido(consId));
         return "pedidodeletado";

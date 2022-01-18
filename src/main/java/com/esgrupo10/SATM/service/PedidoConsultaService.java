@@ -1,5 +1,6 @@
 package com.esgrupo10.SATM.service;
 
+import com.esgrupo10.SATM.model.Paciente;
 import com.esgrupo10.SATM.model.PedidoConsulta;
 import com.esgrupo10.SATM.repository.PedidoConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,18 @@ public class PedidoConsultaService {
 
     public PedidoConsulta getPedido(Long ID) {
         return pedidoConsultaRepository.findById(ID).get();
+    }
+
+    public List<PedidoConsulta> listaPedidosUsuario(Paciente p) {
+        return pedidoConsultaRepository.findAllWithID(p);
+    }
+
+    public List<PedidoConsulta> listaTodosPedidosDisponiveis() {
+        return pedidoConsultaRepository.findAllAvailable();
+    }
+
+    public List<PedidoConsulta> listaTodosComEspecialidade(String e) {
+        return pedidoConsultaRepository.findAllWithE(e);
     }
 
 }
