@@ -1,4 +1,4 @@
-package com.esgrupo10.SATM.entity;
+package com.esgrupo10.SATM.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package com.esgrupo10.SATM;
 
-import com.esgrupo10.SATM.entity.Paciente;
+import com.esgrupo10.SATM.model.Paciente;
 import com.esgrupo10.SATM.repository.PacienteRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

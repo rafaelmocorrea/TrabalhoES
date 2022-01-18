@@ -1,5 +1,6 @@
-package com.esgrupo10.SATM.entity;
+package com.esgrupo10.SATM.details;
 
+import com.esgrupo10.SATM.model.Medico;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,17 +9,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class PacienteDetails implements UserDetails {
+public class MedicoDetails implements UserDetails {
 
-    private Paciente pac;
+    private Medico medico;
 
-    public PacienteDetails(Paciente pac) {
-        this.pac = pac;
+    public MedicoDetails(Medico med) {
+        this.medico = med;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+        list.add(new SimpleGrantedAuthority("MEDICO"));
         list.add(new SimpleGrantedAuthority("PACIENTE"));
 
         return list;
@@ -26,12 +28,12 @@ public class PacienteDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return pac.getSenha();
+        return medico.getSenha();
     }
 
     @Override
     public String getUsername() {
-        return pac.getEmail();
+        return medico.getNome();
     }
 
     @Override

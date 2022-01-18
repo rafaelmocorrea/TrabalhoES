@@ -1,26 +1,28 @@
-package com.esgrupo10.SATM.entity;
+package com.esgrupo10.SATM.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "receita")
+@Table(name = "consulta")
 @Data
 @NoArgsConstructor
-public class Receita {
+public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private Date data;
+    private java.sql.Date data;
+
+    @Column(nullable = true)
+    private Float valor;
 
     @Column(nullable = false)
-    private String remedios;
+    private String descricao;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "paciente_id", nullable = false)

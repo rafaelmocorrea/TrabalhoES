@@ -55,15 +55,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider())
-                .authenticationProvider(medicoDaoAuthenticationProvider());
+        auth.authenticationProvider(medicoDaoAuthenticationProvider())
+                .authenticationProvider(daoAuthenticationProvider());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/menumedico").access("hasAuthority('MEDICO')")
-                .antMatchers("/menupaciente").access("hasAuthority('PACIENTE')")
+                .antMatchers("/menupaciente").access("hasAnyAuthority('PACIENTE','MEDICO')")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

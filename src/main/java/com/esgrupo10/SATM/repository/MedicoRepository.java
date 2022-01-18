@@ -1,6 +1,6 @@
 package com.esgrupo10.SATM.repository;
 
-import com.esgrupo10.SATM.entity.Medico;
+import com.esgrupo10.SATM.model.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

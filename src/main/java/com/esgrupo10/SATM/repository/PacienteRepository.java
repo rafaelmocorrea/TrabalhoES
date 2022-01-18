@@ -1,6 +1,6 @@
 package com.esgrupo10.SATM.repository;
 
-import com.esgrupo10.SATM.entity.Paciente;
+import com.esgrupo10.SATM.model.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
