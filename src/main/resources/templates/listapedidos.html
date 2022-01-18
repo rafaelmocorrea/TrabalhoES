@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Pedidos</title>
+</head>
+<body>
+
+<div>
+  <h3>Lista de Pedidos</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Descricao</th>
+      <th>Especialidade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pedido:${pedidos}">
+      <td th:text="${pedido.descricao}" />
+      <td th:text="${pedido.especialidade}"/>
+      <td><a th:href="@{'/deletaconsulta/'+${pedido.id}}">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

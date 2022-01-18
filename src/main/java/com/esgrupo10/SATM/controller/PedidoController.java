@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class PedidoController {
@@ -38,6 +42,19 @@ public class PedidoController {
         ped.setPaciente(pacienteService.encontraPorEmail(username));
         ped.setAtendida(Boolean.FALSE);
         return pedidoConsultaService.criaPedido(ped);
+    }
+
+    @GetMapping("/gerenciarpedidos")
+    public String listaPedidos(Model model) {
+        List<PedidoConsulta> pedidos = pedidoConsultaService.listaPedidos();
+        model.addAttribute("pedidos",pedidos);
+        return "listapedidos";
+    }
+
+    @GetMapping("/deletaconsulta/{consId}")
+    public String deletaConsulta(@PathVariable Long consId) {
+        pedidoConsultaService.deletaPedido(pedidoConsultaService.getPedido(consId));
+        return "pedidodeletado";
     }
 
 }
