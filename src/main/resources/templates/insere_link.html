@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insere</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>TESTE INSERE LINK</h1>
+    </div>
+    <form th:action="@{/menumedico/inserelink}" th:object="${consulta}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Insira o link da videoconferencia:</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{linkvideoconf}" class="form-control" required/>
+                </div>
+            </div>
+
+            <input type="hidden" th:field="*{id}" th:value="${consulta.id}"/>
+            <input type="hidden" th:field="*{data}" th:value="${consulta.data}"/>
+            <input type="hidden" th:field="*{valor}" th:value="${consulta.valor}"/>
+            <input type="hidden" th:field="*{descricao}" th:value="${consulta.descricao}"/>
+            <input type="hidden" th:field="*{paciente}" th:value="${consulta.paciente}"/>
+            <input type="hidden" th:field="*{medico}" th:value="${consulta.medico}"/>
+
+
+            <div>
+                <button type="submit" class="btn btn-primary">Abrir</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container text-center">
+    <h3><a href="/menumedico">Menu</a></h3>
+</div>
+</body>
+</html>

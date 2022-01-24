@@ -19,4 +19,6 @@ public class ConsultaDTO {
 
     private java.sql.Date data;
 
+    private Long consulta_id;
+
 }

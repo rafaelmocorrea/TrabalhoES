@@ -27,7 +27,7 @@ public class Medico {
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = true, unique = false)
     private String enderecopessoal;
 
     @Column(nullable = true, unique = false)
@@ -39,7 +39,7 @@ public class Medico {
     @Column(nullable = false, unique = true)
     private String crm;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = true, unique = false)
     private String especialidade;
 
 }

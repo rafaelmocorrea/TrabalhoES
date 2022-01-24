@@ -27,9 +27,9 @@ public class Paciente {
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = true, unique = false)
     private String endereco;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = true, unique = false)
     private String telefone;
 }
