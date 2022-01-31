@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Consultas</title>
+</head>
+<body>
+
+<div>
+    <h3>Gerenciar consultas</h3>
+    <form th:action="@{'/menumedico/filtralista'}" method="post" style="max-width: 600px; margin: 0 auto;">
+        <button type="submit" class="btn btn-primary" name="antigas">Encerradas</button>
+        <button type="submit" class="btn btn-primary" name="todas">Todas</button>
+        <button type="submit" class="btn btn-primary" name="marcadas">Marcadas</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Email</th>
+            <th>Descricao</th>
+            <th>Data</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="consulta:${consultas}">
+            <td th:text="${consulta.paciente.getNome()}"/>
+            <td th:text="${consulta.paciente.getEmail()}"/>
+            <td th:text="${consulta.descricao}" />
+            <td th:text="${consulta.data}"/>
+            <td th:text="${consulta.status}" />
+            <td><a th:href="@{'/menumedico/consulta/'+${consulta.id}}">Ver</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/menumedico">Menu</a>
+</div>
+
+</body>
+</html>

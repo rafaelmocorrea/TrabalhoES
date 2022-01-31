@@ -20,19 +20,19 @@ import java.util.List;
 public class ConsultaController {
 
     @Autowired
-    ConsultaService consultaService;
+    private ConsultaService consultaService;
 
     @Autowired
-    PacienteService pacienteService;
+    private PacienteService pacienteService;
 
     @Autowired
-    MedicoService medicoService;
+    private MedicoService medicoService;
 
     @Autowired
-    PedidoConsultaService pedidoConsultaService;
+    private PedidoConsultaService pedidoConsultaService;
 
     @Autowired
-    NotificacaoService notificacaoService;
+    private NotificacaoService notificacaoService;
 
     @GetMapping("/menumedico/aceitapedido/{pedid}")
     public String aceitaPedido(Model model, @PathVariable Long pedid){
@@ -78,6 +78,7 @@ public class ConsultaController {
         String retorno = consultaService.criaConsulta(consulta);
         if (retorno.equals("consulta_sucesso")) {
             pedidoConsultaService.deletaPedido(pedidoConsultaService.getPedido(consultaDTO.getPedido_id()));
+            notificacaoService.notificaConsultaAceita(pac,med,consultaDTO.getData());
         }
 
         return retorno;
@@ -141,6 +142,14 @@ public class ConsultaController {
         Medico med = medicoService.encontraPorEmail(username);
         java.sql.Date data = new java.sql.Date(System.currentTimeMillis());
         List<Consulta> consultas = consultaService.listaConsultasDiaMedico(med,data);
+        List<Consulta> consultas_atualizar = consultaService.listaConsultasPreDateNotStatusMedico(med,data,"Encerrada");
+
+        if (consultas_atualizar != null) {
+            for (Consulta c : consultas_atualizar) {
+                c.setStatus("Encerrada");
+                consultaService.updateConsulta(c);
+            }
+        }
 
         System.out.println("Medico: "+med.getNome()+"Data: "+data);
 
@@ -158,11 +167,126 @@ public class ConsultaController {
     }
 
     @PostMapping("/menumedico/inserelink")
-    public String atualizaLink(Consulta consulta) {
+    public String insereLink(Consulta consulta) {
         consulta.setStatus("Em andamento");
         consultaService.updateConsulta(consulta);
         notificacaoService.notificaLink(consulta.getPaciente(),consulta.getLinkvideoconf());
 
         return "sucesso_link";
+    }
+
+    @GetMapping("/menumedico/consulta/{consid}")
+    public String consultaEmAndamento(Model model, @PathVariable Long consid) {
+        Consulta cons = consultaService.getConsulta(consid);
+        model.addAttribute("consulta",cons);
+
+        return "consulta";
+    }
+
+    @PostMapping(value = "/menumedico/atualizalink/{consid}",params = "atualizar")
+    public String atualizaLink(Model model, @PathVariable Long consid,Consulta consulta) {
+        consultaService.updateConsulta(consulta);
+        notificacaoService.notificaLinkUpdate(consulta.getPaciente(),consulta.getLinkvideoconf());
+        model.addAttribute("consulta",consulta);
+
+        return "consulta";
+    }
+
+    @PostMapping(value = "/menumedico/atualizalink/{consid}",params = "encerrar")
+    public String encerraConsulta(Model model, @PathVariable Long consid,Consulta consulta) {
+        consulta.setStatus("Encerrada");
+        consultaService.updateConsulta(consulta);
+        model.addAttribute("consulta",consulta);
+
+        return "menumedico";
+    }
+
+    @PostMapping(value = "/menumedico/atualizalink/{consid}",params = "cancelar")
+    public String cancelaConsulta(Model model, @PathVariable Long consid,Consulta consulta) {
+        consultaService.deletaConsulta(consulta);
+        notificacaoService.notificaConsultaCancelada(consulta.getPaciente(), consulta.getMedico(), consulta.getData());
+
+        return "menumedico";
+    }
+
+    @GetMapping("/menumedico/agendamedico")
+    public String agendaMedico(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        Medico med = medicoService.encontraPorEmail(username);
+        List<Consulta> consultas = consultaService.listaConsultasNotStatusMedico(med,"Encerrada");
+        model.addAttribute("consultas",consultas);
+
+        return "agendamedico";
+    }
+
+    @GetMapping("/menumedico/gerenciarconsultas")
+    public String gerenciarConsultas(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Medico med = medicoService.encontraPorEmail(username);
+        List<Consulta> consultas = consultaService.listaConsultasMedico(med);
+        model.addAttribute("consultas",consultas);
+
+        return "consultas";
+    }
+
+    @PostMapping(value = "/menumedico/filtralista",params = "antigas")
+    public String consultasEncerradas(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Medico med = medicoService.encontraPorEmail(username);
+        List<Consulta> consultas = consultaService.listaConsultaStatusMedico(med,"Encerrada");
+        model.addAttribute("consultas",consultas);
+
+        return "consultas";
+    }
+
+    @PostMapping(value = "/menumedico/filtralista",params = "marcadas")
+    public String consultasMarcadas(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Medico med = medicoService.encontraPorEmail(username);
+        List<Consulta> consultas = consultaService.listaConsultaStatusMedico(med,"Marcada");
+        model.addAttribute("consultas",consultas);
+
+        return "consultas";
+    }
+
+    @PostMapping(value = "/menumedico/filtralista",params = "todas")
+    public String todasConsultas(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Medico med = medicoService.encontraPorEmail(username);
+        List<Consulta> consultas = consultaService.listaConsultasMedico(med);
+        model.addAttribute("consultas",consultas);
+
+        return "consultas";
     }
 }

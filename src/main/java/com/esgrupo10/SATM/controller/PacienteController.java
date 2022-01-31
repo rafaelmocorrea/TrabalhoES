@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -33,6 +34,14 @@ public class PacienteController {
     @GetMapping("/menupaciente")
     public String menuPaciente() {
         return "menupaciente";
+    }
+
+    @GetMapping("/menumedico/paciente/{pacid}")
+    public String exibePaciente(Model model, @PathVariable Long pacid) {
+        Paciente pac = pacienteService.encontraPorId(pacid);
+        model.addAttribute("pac",pac);
+
+        return "mostrapaciente";
     }
 
 }

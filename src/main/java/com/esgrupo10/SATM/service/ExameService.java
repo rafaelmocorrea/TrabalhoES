@@ -45,4 +45,34 @@ public class ExameService {
     public List<Exame> getExames() {
         return exameRepository.findAll();
     }
+
+    public String criaExame(Exame exame) {
+        try {
+            exameRepository.save(exame);
+        } catch (Exception e) {
+            return "falha";
+        }
+
+        return "receita_sucesso";
+    }
+
+    public void updateExame(Exame exame) {
+        exameRepository.save(exame);
+    }
+
+    public List<Exame> listaExamesMedico(Medico m) {
+        return exameRepository.findAllWithMedic(m);
+    }
+
+    public List<Exame> listaExamesPaciente(Paciente p) {
+        return exameRepository.findAllWithPatient(p);
+    }
+
+    public List<Exame> listaExamesMedicoBoolean(Medico m, Boolean b) {
+        return exameRepository.findAllDoneWithMedic(m,b);
+    }
+
+    public void apagaExame(Exame exame) {
+        exameRepository.delete(exame);
+    }
 }

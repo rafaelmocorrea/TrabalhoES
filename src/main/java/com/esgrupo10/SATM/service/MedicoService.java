@@ -35,4 +35,8 @@ public class MedicoService {
         return medicoRepository.findById(ID).get();
     }
 
+    public void atualizaMedico(Medico med) {
+        medicoRepository.save(med);
+    }
+
 }

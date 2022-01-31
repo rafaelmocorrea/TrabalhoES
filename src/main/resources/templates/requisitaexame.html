@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>EXAME</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>TESTE REQUISITA EXAME</h1>
+    </div>
+    <form th:action="@{/menumedico/confirma_exame}" th:object="${exameDTO}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">E-mail Paciente:</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{paciente_email}" th:value="${exameDTO.paciente_email}" class="form-control" required/>
+                </div>
+            </div>
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Nome exame:</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{nome}" th:value="${exameDTO.nome}" class="form-control" required/>
+                </div>
+            </div>
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Descricao:</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{descricao}" th:value="${exameDTO.descricao}" class="form-control" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Data: </label>
+                <div class="col-8">
+                    <input type="date" th:field="*{data}" th:value = "${exameDTO.data}"class="form-control"
+                           required/>
+                </div>
+            </div>
+            <input type="hidden" th:field="*{medico_email}" th:value="${exameDTO.medico_email}"/>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container text-center">
+    <h3><a href="/menumedico">Menu</a></h3>
+</div>
+</body>
+</html>

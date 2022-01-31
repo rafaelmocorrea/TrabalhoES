@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PACIENTE</title>
+</head>
+<body>
+
+<div>
+    <h3>Paciente</h3>
+    <table>
+        <tbody>
+        <tr>
+            <td>Nome do paciente:</td>
+            <td th:text="${pac.getNome()}" />
+        </tr>
+        <tr>
+            <td>CPF:</td>
+            <td th:text="${pac.getCpf()}"/>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${pac.getEmail()}"/>
+        </tr>
+        <tr>
+            <td>Telefone:</td>
+            <td th:text="${pac.getTelefone()}"/>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/menumedico/acessarexames">Voltar</a>
+</div>
+
+</body>
+</html>

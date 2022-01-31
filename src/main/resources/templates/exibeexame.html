@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EXAME</title>
+</head>
+<body>
+
+<div>
+    <h3>Exame</h3>
+    <table>
+        <tbody>
+        <tr>
+            <td>Nome do paciente:</td>
+            <td th:text="${exame.paciente.getNome()}" />
+        </tr>
+        <tr>
+            <td>CPF:</td>
+            <td th:text="${exame.paciente.getCpf()}"/>
+        </tr>
+        <tr>
+            <td>Nome:</td>
+            <td th:text="${exame.nome}"/>
+        </tr>
+        <tr>
+           <td>Status:</td>
+            <td th:text="SIM" th:if="${exame.feito == True}"/>
+            <td th:text="NAO" th:if="${exame.feito == False}"/>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/menumedico/acessarexames">Voltar</a>
+</div>
+
+</body>
+</html>

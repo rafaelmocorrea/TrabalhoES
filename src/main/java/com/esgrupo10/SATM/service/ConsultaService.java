@@ -15,7 +15,7 @@ import java.util.List;
 public class ConsultaService {
 
     @Autowired
-    ConsultaRepository consultaRepository;
+    private ConsultaRepository consultaRepository;
 
     public String criaConsulta(Consulta consulta) {
         try {
@@ -47,9 +47,20 @@ public class ConsultaService {
 
     public List<Consulta> listaConsultasDiaMedico(Medico m,java.sql.Date data) { return consultaRepository.findDailyMedic(m,data);}
 
+    public List<Consulta> listaConsultasPreDateNotStatusMedico(Medico m, java.sql.Date data, String status) { return consultaRepository.findNotStatusPreDateMedic(m,status,data);}
+
+    public List<Consulta> listaConsultasNotStatusMedico(Medico m, String status) {
+        return consultaRepository.findNotStatusMedic(m,status);
+    }
+
+    public List<Consulta> listaConsultaStatusMedico(Medico m, String status) {
+        return consultaRepository.findStatusMedic(m,status);
+    }
+
     public Consulta getConsulta(Long id) { return consultaRepository.findById(id).get(); }
 
     public void updateConsulta(Consulta consulta) {
         consultaRepository.save(consulta);
     }
+
 }

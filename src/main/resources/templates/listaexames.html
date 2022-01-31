@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Exames</title>
+</head>
+<body>
+
+<div>
+  <h3>Gerenciar Exames</h3>
+  <form th:action="@{'/menumedico/filtraexames'}" method="post" style="max-width: 600px; margin: 0 auto;">
+    <button type="submit" class="btn btn-primary" name="nao_feitos">Nao Feitos</button>
+    <button type="submit" class="btn btn-primary" name="todas">Todos</button>
+    <button type="submit" class="btn btn-primary" name="feitos">Feitos</button>
+  </form>
+  <table>
+    <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Email</th>
+      <th>Nome</th>
+      <th>Data</th>
+      <th>Feito</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="exame:${exames}">
+      <td th:text="${exame.paciente.getNome()}"/>
+      <td th:text="${exame.paciente.getEmail()}"/>
+      <td th:text="${exame.nome}" />
+      <td th:text="${exame.data}"/>
+      <td th:text ="SIM" th:if="${exame.feito == True}"/>
+      <td th:text ="NAO" th:if="${exame.feito == False}"/>
+      <td><a th:href="@{'/menumedico/exame/'+${exame.id}}">Ver</a></td>
+      <td><a th:href="@{'/menumedico/apagaexame/'+${exame.id}}">Apagar</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/menumedico">Menu</a>
+</div>
+
+</body>
+</html>
