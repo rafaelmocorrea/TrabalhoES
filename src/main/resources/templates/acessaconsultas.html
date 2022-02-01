@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Acessa Consultas</title>
+</head>
+<body>
+
+<div>
+  <h3>Consultas do dia</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Medico</th>
+      <th>Descricao</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="consulta:${consultas}">
+      <td th:text="${consulta.medico.getEmail()}"></td>
+      <td th:text="${consulta.descricao}" />
+      <td th:text="${consulta.status}" />
+      <td><a th:href="@{'/menupaciente/consulta/'+${consulta.id}}" th:if="${consulta.status == 'Em andamento'}">Acessar</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/menupaciente">Menu</a>
+</div>
+
+</body>
+</html>

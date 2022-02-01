@@ -29,6 +29,9 @@
         </tr>
         </tbody>
     </table>
+    <div th:if="${exame.feito == True}">
+        <h3><a th:href="@{'/menumedico/download/'+${exame.getId()}}">Download Exame</a></h3>
+    </div>
     <a href="/menumedico/acessarexames">Voltar</a>
 </div>
 

@@ -15,15 +15,6 @@ public class Exame {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true)
-    private String docName;
-
-    @Column(nullable = true)
-    private String docType;
-
-    @Lob
-    private byte[] dados;
-
     @Column(nullable = false)
     private String nome;
 
@@ -35,6 +26,10 @@ public class Exame {
 
     @Column(nullable = true)
     private Boolean feito;
+
+    @OneToOne(fetch = FetchType.LAZY,optional = true)
+    @JoinColumn(name="arquivo_id",nullable = true)
+    private Arquivo arquivo;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "paciente_id", nullable = false)

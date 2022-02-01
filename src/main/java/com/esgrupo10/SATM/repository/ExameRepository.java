@@ -16,7 +16,9 @@ public interface ExameRepository extends JpaRepository<Exame, Long> {
     @Query("SELECT u FROM Exame u WHERE u.medico = ?1 ORDER BY u.data")
     public List<Exame> findAllWithMedic(Medico m);
 
-    @Query("SELECT u FROM Exame u WHERE u.medico = ?1 AND u.feito = ?2")
+    @Query("SELECT u FROM Exame u WHERE u.medico = ?1 AND u.feito = ?2 ORDER BY u.data")
     public List<Exame> findAllDoneWithMedic(Medico m,Boolean b);
 
+    @Query("SELECT u FROM Exame u WHERE u.paciente = ?1 AND u.feito = ?2 ORDER BY u.data")
+    List<Exame> findAllDoneWithPatient(Paciente p, Boolean b);
 }

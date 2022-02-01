@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar receitas</title>
+</head>
+<body>
+
+<div>
+    <h3>Gerenciar receitas</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Medico</th>
+            <th>Remedios</th>
+            <th>Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="receita:${receitas}">
+            <td th:text="${receita.medico.getNome()}"/>
+            <td th:text="${receita.remedios}"/>
+            <td th:text="${receita.data}" />
+            <td><a th:href="@{'/menupaciente/receita/'+${receita.id}}">Ver</a></td>
+            <td><a th:href="@{'/menupaciente/apagareceita/'+${receita.id}}">Apagar</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/menupaciente">Menu</a>
+</div>
+
+</body>
+</html>

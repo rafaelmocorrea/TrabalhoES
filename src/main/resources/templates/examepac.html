@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>EXAME</title>
+</head>
+<body>
+
+<div>
+  <h3>Exame</h3>
+  <table>
+    <tbody>
+    <tr>
+      <td>Nome do medico:</td>
+      <td th:text="${exame.getExame().medico.getNome()}" />
+    </tr>
+    <tr>
+      <td>CPF:</td>
+      <td th:text="${exame.getExame().medico.getCpf()}"/>
+    </tr>
+    <tr>
+      <td>Nome:</td>
+      <td th:text="${exame.getExame().nome}"/>
+    </tr>
+    <tr>
+      <td>Status:</td>
+      <td th:text="SIM" th:if="${exame.getExame().feito == True}"/>
+      <td th:text="NAO" th:if="${exame.getExame().feito == False}"/>
+    </tr>
+    </tbody>
+  </table>
+  <div th:if="${exame.getExame().feito == False}">
+    <h3>Upload exame</h3>
+    <form id="upload" name ="upload" method="post" th:action="@{/menupaciente/exame/upload}" enctype="multipart/form-data" th:object="${exame}">
+      <input type="file" name="arquivo" th:field="*{file}" accept="application/pdf" required/>
+      <input type="hidden" th:field="*{exame}" th:value="${exame}"/>
+      <button type="submit" class = "btn btn-primary">Upload</button>
+    </form>
+  </div>
+  <div th:if="${exame.getExame().feito == True}">
+    <h3><a th:href="@{'/menupaciente/download/'+${exame.getExame().getId()}}">Download Exame</a></h3>
+  </div>
+  <a href="/menupaciente/gerenciarexames">Voltar</a>
+</div>
+
+</body>
+</html>

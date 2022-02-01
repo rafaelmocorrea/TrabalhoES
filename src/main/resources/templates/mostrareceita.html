@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>RECEITA</title>
+</head>
+<body>
+
+<div>
+  <h3>Receita</h3>
+  <table>
+    <tbody>
+    <tr>
+      <td>Nome do medico:</td>
+      <td th:text="${receita.getMedico().getNome()}" />
+    </tr>
+    <tr>
+      <td>CRM do medico:</td>
+      <td th:text="${receita.getMedico().getCrm()}"/>
+    </tr>
+    <tr>
+      <td>Email do medico:</td>
+      <td th:text="${receita.getMedico().getEmail()}"/>
+    </tr>
+    <tr>
+      <td>Remedios:</td>
+      <td th:text="${receita.getRemedios()}"/>
+    </tr>
+    <tr>
+      <td>Data:</td>
+      <td th:text="${receita.getData()}"/>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/menupaciente/gerenciarreceitas">Voltar</a>
+</div>
+
+</body>
+</html>

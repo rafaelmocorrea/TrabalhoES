@@ -35,7 +35,7 @@ public class ConsultaService {
         consultaRepository.delete(consulta);
     }
 
-    public List<Consulta> listaConsultasUsuario(Paciente p) {
+    public List<Consulta> listaConsultasPaciente(Paciente p) {
         return consultaRepository.findAllWithPatient(p);
     }
 
@@ -43,7 +43,7 @@ public class ConsultaService {
         return consultaRepository.findAllWithMedic(m);
     }
 
-    public List<Consulta> listaConsultasDiaUsuario(Paciente p,java.sql.Date data) { return consultaRepository.findDailyPatient(p,data);}
+    public List<Consulta> listaConsultasDiaPaciente(Paciente p,java.sql.Date data) { return consultaRepository.findDailyPatient(p,data);}
 
     public List<Consulta> listaConsultasDiaMedico(Medico m,java.sql.Date data) { return consultaRepository.findDailyMedic(m,data);}
 
@@ -63,4 +63,11 @@ public class ConsultaService {
         consultaRepository.save(consulta);
     }
 
+    public List<Consulta> listaConsultasNotStatusPaciente(Paciente pac, String status) {
+        return consultaRepository.findNotStatusPatient(pac,status);
+    }
+
+    public List<Consulta> listaConsultaStatusPaciente(Paciente pac, String status) {
+        return consultaRepository.findStatusPatient(pac,status);
+    }
 }

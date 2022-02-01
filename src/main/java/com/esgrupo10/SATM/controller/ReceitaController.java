@@ -2,6 +2,7 @@ package com.esgrupo10.SATM.controller;
 
 import com.esgrupo10.SATM.DTO.ReceitaDTO;
 import com.esgrupo10.SATM.details.MedicoDetails;
+import com.esgrupo10.SATM.details.PacienteDetails;
 import com.esgrupo10.SATM.model.Consulta;
 import com.esgrupo10.SATM.model.Medico;
 import com.esgrupo10.SATM.model.Paciente;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class ReceitaController {
@@ -78,6 +81,57 @@ public class ReceitaController {
         model.addAttribute("receitaDTO",receitaDTO);
 
         return "prescrevereceita";
+    }
+
+    @GetMapping("/menupaciente/gerenciarreceitas")
+    public String gerenciaReceitas(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof PacienteDetails) {
+            username = ((PacienteDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Paciente pac = pacienteService.encontraPorEmail(username);
+        List<Receita> receitas = receitaService.listaReceitasPac(pac);
+        model.addAttribute("receitas",receitas);
+
+        return "gerenciareceitas";
+    }
+
+    @GetMapping("/menupaciente/receita/{recid}")
+    public String exibeReceita(Model model, @PathVariable Long recid) {
+        Receita rec = receitaService.encontraPorId(recid);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof PacienteDetails) {
+            username = ((PacienteDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        model.addAttribute("receita",rec);
+        if (!rec.getPaciente().getEmail().equals(username)) {
+            return "403";
+        }
+        return "mostrareceita";
+    }
+
+    @GetMapping("/menupaciente/apagareceita/{recid}")
+    public String apagaReceita(@PathVariable Long recid) {
+        Receita rec = receitaService.encontraPorId(recid);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof PacienteDetails) {
+            username = ((PacienteDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        if (!rec.getPaciente().getEmail().equals(username)) {
+            return "403";
+        }
+        receitaService.deletaReceita(rec);
+
+        return "menupaciente";
     }
 
 }

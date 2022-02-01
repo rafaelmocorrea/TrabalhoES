@@ -35,4 +35,7 @@ public class PacienteService {
         return pacienteRepository.findById(ID).get();
     }
 
+    public void atualizaPaciente(Paciente paciente) {
+        pacienteRepository.save(paciente);
+    }
 }

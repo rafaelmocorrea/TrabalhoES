@@ -31,4 +31,7 @@ public class ReceitaService {
     public List<Receita> listaReceitasPac(Paciente p) {
         return receitaRepository.findAllWithPatient(p);
     }
+
+    public Receita encontraPorId(Long id) { return receitaRepository.findById(id).get(); }
+
 }

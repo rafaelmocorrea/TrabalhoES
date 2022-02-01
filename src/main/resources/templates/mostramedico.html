@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MEDICO</title>
+</head>
+<body>
+
+<div>
+    <h3>Medico</h3>
+    <table>
+        <tbody>
+        <tr>
+            <td>Nome do medico:</td>
+            <td th:text="${med.getNome()}" />
+        </tr>
+        <tr>
+            <td>CPF:</td>
+            <td th:text="${med.getCpf()}"/>
+        </tr>
+        <tr>
+            <td>CRM:</td>
+            <td th:text="${med.getCrm()}"/>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${med.getEmail()}"/>
+        </tr>
+        <tr>
+            <td>Especialidade:</td>
+            <td th:text="${med.getEspecialidade()}"/>
+        </tr>
+        <tr>
+            <td>Telefone:</td>
+            <td th:text="${med.getTelefone()}"/>
+        </tr>
+        <tr>
+            <td>Endereco Consultorio:</td>
+            <td th:text="${med.getEnderecoconsultorio()}"/>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/menupaciente/acessarconsultas">Voltar</a>
+</div>
+
+</body>
+</html>

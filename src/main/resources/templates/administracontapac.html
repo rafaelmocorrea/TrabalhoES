@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Minha Conta</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>TESTE CONTA</h1>
+    </div>
+    <form th:action="@{/menupaciente/atualizaconta/}" th:object="${paciente}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Nome:</label>
+                <div class="col-8">
+                    <input type="text" th:value="${paciente.nome}" th:field="*{nome}" class="form-control"/>
+                </div>
+            </div>
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Endereco:</label>
+                <div class="col-8">
+                    <input type="text" th:value="${paciente.endereco}" th:field="*{endereco}" class="form-control"/>
+                </div>
+            </div>
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Telefone:</label>
+                <div class="col-8">
+                    <input type="text" th:value="${paciente.telefone}" th:field="*{telefone}" class="form-control"/>
+                </div>
+            </div>
+
+            <input type="hidden" th:field="*{id}" th:value="${paciente.id}"/>
+            <input type="hidden" th:field="*{cpf}" th:value="${paciente.cpf}"/>
+            <input type="hidden" th:field="*{senha}" th:value="${paciente.senha}"/>
+            <input type="hidden" th:field="*{email}" th:value="${paciente.email}"/>
+
+            <button type="submit" class="btn btn-primary">Atualizar Informacoes</button>
+
+        </div>
+    </form>
+</div>
+<div class="container text-center">
+    <h3><a href="/menupaciente">Menu</a></h3>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda</title>
+</head>
+<body>
+
+<div>
+  <h3>Agenda</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Medico</th>
+      <th>Email</th>
+      <th>Especialidade</th>
+      <th>Descricao</th>
+      <th>Data</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="consulta:${consultas}">
+      <td th:text="${consulta.medico.getNome()}"></td>
+      <td th:text="${consulta.medico.getEmail()}"></td>
+      <td th:text="${consulta.medico.getEspecialidade()}"></td>
+      <td th:text="${consulta.descricao}" />
+      <td th:text="${consulta.data}" />
+    </tr>
+    </tbody>
+  </table>
+  <a href="/menupaciente">Menu</a>
+</div>
+
+</body>
+</html>

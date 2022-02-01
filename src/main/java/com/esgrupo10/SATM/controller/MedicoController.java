@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -54,10 +55,18 @@ public class MedicoController {
     }
 
     @PostMapping("/menumedico/atualizaconta/")
-    public String minhaConta(Medico medico) {
+    public String atualizaConta(Medico medico) {
         medicoService.atualizaMedico(medico);
 
         return "menumedico";
+    }
+
+    @GetMapping("/menupaciente/medico/{medid}")
+    public String exibeMedico(Model model, @PathVariable Long medid) {
+        Medico med = medicoService.encontraPorId(medid);
+        model.addAttribute("med",med);
+
+        return "mostramedico";
     }
 
 }
