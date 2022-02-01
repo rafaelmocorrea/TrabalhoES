@@ -47,6 +47,10 @@ public class ExameService {
         return exameRepository.findAllWithPatient(p);
     }
 
+    public List<Exame> listaExamesPacienteMedico(Paciente p, Medico m) {
+        return exameRepository.findAllWithPatientAndMedic(p,m);
+    }
+
     public List<Exame> listaExamesMedicoBoolean(Medico m, Boolean b) {
         return exameRepository.findAllDoneWithMedic(m,b);
     }

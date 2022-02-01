@@ -38,4 +38,7 @@ public class Consulta {
     @JoinColumn(name = "medico_id", nullable = false)
     private Medico medico;
 
+    @Column
+    private Boolean paga;
+
 }

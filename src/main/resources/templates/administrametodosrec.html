@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Metodos de Recebimento</title>
+</head>
+<body>
+
+<div>
+  <h3>Gerenciar Metodos de Recebimento</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Metodo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="metodo:${metodos}">
+      <td th:text="${metodo.nome}"/>
+      <td><a th:href="@{'/menumedico/apagametodo/'+${metodo.id}}">Apagar</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/menumedico/adicionametodo/}">Adiciona Metodo de Pagamento</a>
+  <a href="/menumedico">Menu</a>
+</div>
+
+</body>
+</html>

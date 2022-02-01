@@ -62,6 +62,7 @@
             <input type="hidden" th:field="*{medico}" th:value="${consulta.medico}"/>
             <input type="hidden" th:field="*{descricao}" th:value="${consulta.descricao}"/>
             <input type="hidden" th:field="*{status}" th:value="${consulta.status}"/>
+            <input type="hidden" th:field="*{paga}" th:value="${consulta.paga}"/>
 
             <div>
                 <button type="submit" class="btn btn-primary" name="receita" th:if="${consulta.status == 'Em andamento'}">Prescrever Receita</button>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagar Consulta</title>
+</head>
+<body>
+
+<div>
+  <h3>Escolha um metodo para pagar</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Metodo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="metodo:${consultaDTO.infoPagamentos}">
+      <td th:text="${metodo.nome}"/>
+      <td><a th:href="@{'/menupaciente/consultapaga/'+${consultaDTO.consulta_id}}">Escolher</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{'/menupaciente/consultapaga/'+${consultaDTO.consulta_id}}">Emitir boleto</a>
+  <a href="/menupaciente">Menu</a>
+</div>
+
+</body>
+</html>

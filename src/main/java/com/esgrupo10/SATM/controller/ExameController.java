@@ -306,4 +306,26 @@ public class ExameController {
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\""+arq.getDocName()+"\"")
                 .body(new ByteArrayResource(arq.getDados()));
     }
+
+    @GetMapping("/menumedico/pacexames/{pacid}")
+    public String exibeExamesPac(Model model, @PathVariable Long pacid) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Medico med = medicoService.encontraPorEmail(username);
+        Paciente pac = pacienteService.encontraPorId(pacid);
+        List<Exame> exames;
+        if (pac.getPermite_exames()) {
+            exames = exameService.listaExamesPaciente(pac);
+        } else {
+            exames = exameService.listaExamesPacienteMedico(pac,med);
+        }
+        model.addAttribute("exames",exames);
+
+        return "examespaciente";
+    }
 }

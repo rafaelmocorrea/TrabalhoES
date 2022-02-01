@@ -33,6 +33,24 @@
                     <input type="text" th:value="${paciente.telefone}" th:field="*{telefone}" class="form-control"/>
                 </div>
             </div>
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Permite exibicao de exames:</label>
+                <div class="col-8">
+                    <select th:field="*{permite_exames}" required>
+                        <option th:value="True" th:text="Sim"></option>
+                        <option th:value="False" th:text="Nao"></option>
+                    </select>
+                </div>
+            </div>
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Permite exibicao de consultas:</label>
+                <div class="col-8">
+                    <select th:field="*{permite_consultas}" required>
+                        <option th:value="True" th:text="Sim"></option>
+                        <option th:value="False" th:text="Nao"></option>
+                    </select>
+                </div>
+            </div>
 
             <input type="hidden" th:field="*{id}" th:value="${paciente.id}"/>
             <input type="hidden" th:field="*{cpf}" th:value="${paciente.cpf}"/>
@@ -45,6 +63,7 @@
     </form>
 </div>
 <div class="container text-center">
+    <h3><a th:href="@{/menupaciente/metodos/}">Administrar metodos de pagamento</a></h3>
     <h3><a href="/menupaciente">Menu</a></h3>
 </div>
 </body>

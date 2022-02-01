@@ -35,6 +35,9 @@ public class ConsultaController {
     @Autowired
     private NotificacaoService notificacaoService;
 
+    @Autowired
+    private InfoPagamentoService infoPagamentoService;
+
     @GetMapping("/menumedico/aceitapedido/{pedid}")
     public String aceitaPedido(Model model, @PathVariable Long pedid){
 
@@ -74,6 +77,10 @@ public class ConsultaController {
         consulta.setData(consultaDTO.getData());
         consulta.setValor(consultaDTO.getValor());
         consulta.setDescricao(consultaDTO.getDescricao());
+        if (consultaDTO.getValor() > 0)
+            consulta.setPaga(Boolean.FALSE);
+        else
+            consulta.setPaga(Boolean.TRUE);
         consulta.setStatus("Marcada");
 
         String retorno = consultaService.criaConsulta(consulta);
@@ -123,6 +130,10 @@ public class ConsultaController {
         consulta.setDescricao(consultaDTO.getDescricao());
         consulta.setData(consultaDTO.getData());
         consulta.setValor(consultaDTO.getValor());
+        if (consultaDTO.getValor() > 0)
+            consulta.setPaga(Boolean.FALSE);
+        else
+            consulta.setPaga(Boolean.TRUE);
         consulta.setStatus("Marcada");
 
         notificacaoService.notificaConsulta(pac,med,consulta.getData());
@@ -438,7 +449,56 @@ public class ConsultaController {
     @GetMapping("/menupaciente/consulta/{consid}")
     public String consultaEmAndamentoPac(Model model, @PathVariable Long consid) {
         Consulta cons = consultaService.getConsulta(consid);
-        model.addAttribute("consulta",cons);
+        if (cons.getPaga()) {
+            model.addAttribute("consulta", cons);
+
+            return "consultap";
+        }
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof PacienteDetails) {
+            username = ((PacienteDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Paciente pac = pacienteService.encontraPorEmail(username);
+        ConsultaDTO consultaDTO = new ConsultaDTO();
+        consultaDTO.setConsulta_id(consid);
+
+        consultaDTO.setInfoPagamentos(infoPagamentoService.metodosPagamentoPaciente(pac));
+        model.addAttribute("consultaDTO",consultaDTO);
+
+        return "pagaconsulta";
+    }
+
+    @GetMapping("/menumedico/paccons/{pacid}")
+    public String exibeConsultasPac(Model model, @PathVariable Long pacid) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Medico med = medicoService.encontraPorEmail(username);
+        Paciente pac = pacienteService.encontraPorId(pacid);
+        List<Consulta> consultas;
+        if (pac.getPermite_consultas()) {
+            consultas = consultaService.listaConsultasNotStatusPaciente(pac,"Marcada");
+        } else {
+            consultas = consultaService.listaConsultasNotStatusPacienteMedico(pac,med,"Marcada");
+        }
+        model.addAttribute("consultas",consultas);
+
+        return "consultaspaciente";
+    }
+
+    @GetMapping("/menupaciente/consultapaga/{consid}")
+    public String consultaPaga(Model model, @PathVariable Long consid) {
+        Consulta cons = consultaService.getConsulta(consid);
+        cons.setPaga(Boolean.TRUE);
+        consultaService.updateConsulta(cons);
+        model.addAttribute("consulta", cons);
 
         return "consultap";
     }

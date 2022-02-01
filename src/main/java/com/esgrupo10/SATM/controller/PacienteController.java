@@ -30,6 +30,8 @@ public class PacienteController {
 
     @PostMapping("/paciente_registro")
     public String pacienteRegistro(Paciente pac) {
+        pac.setPermite_consultas(Boolean.TRUE);
+        pac.setPermite_exames(Boolean.TRUE);
         return pacienteService.registraPaciente(pac);
     }
 

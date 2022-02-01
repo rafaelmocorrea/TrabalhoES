@@ -70,4 +70,9 @@ public class ConsultaService {
     public List<Consulta> listaConsultaStatusPaciente(Paciente pac, String status) {
         return consultaRepository.findStatusPatient(pac,status);
     }
+
+    public List<Consulta> listaConsultasNotStatusPacienteMedico(Paciente p, Medico m, String s) {
+        return consultaRepository.findNotStatusPatientMedic(p,m,s);
+    }
+
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Adicionar Metodo</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>TESTE Metodo</h1>
+    </div>
+    <form th:action="@{/menupaciente/addmetodo/}" th:object="${metodo}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Nome:</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{nome}" class="form-control"/>
+                </div>
+            </div>
+            <div class ="form-group row">
+                <label class="col-4 col-form-label">Link plataforma externa:</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{stringPExterna}" class="form-control"/>
+                </div>
+            </div>
+            <input type="hidden" th:field="*{id}" th:value="${metodo.id}"/>
+            <input type="hidden" th:field="*{paciente}" th:value="${metodo.paciente}"/>
+
+            <button type="submit" class="btn btn-primary">Adicionar Metodo</button>
+
+        </div>
+    </form>
+</div>
+<div class="container text-center">
+    <h3><a href="/menupaciente">Menu</a></h3>
+</div>
+</body>
+</html>

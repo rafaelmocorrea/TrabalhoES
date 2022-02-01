@@ -28,6 +28,10 @@
         </tr>
         </tbody>
     </table>
+    <div>
+        <a th:href="@{'/menumedico/pacexames/'+${pac.getId()}}" target="_blank">Ver exames</a>
+        <a th:href="@{'/menumedico/paccons/'+${pac.getId()}}" target="_blank">Ver consultas</a>
+    </div>
     <a href="/menumedico/acessarexames">Voltar</a>
 </div>
 

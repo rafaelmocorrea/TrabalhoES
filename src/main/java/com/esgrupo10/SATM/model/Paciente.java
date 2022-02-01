@@ -32,4 +32,10 @@ public class Paciente {
 
     @Column(nullable = true, unique = false)
     private String telefone;
+
+    @Column(nullable = true)
+    private Boolean permite_exames;
+
+    @Column(nullable = true)
+    private Boolean permite_consultas;
 }

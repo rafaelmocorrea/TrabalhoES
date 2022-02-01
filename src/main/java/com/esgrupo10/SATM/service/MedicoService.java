@@ -13,10 +13,17 @@ public class MedicoService {
     @Autowired
     MedicoRepository medicoRepository;
 
+    @Autowired
+    ValidaService validaService;
+
     public String registraMedico(Medico med) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String senha_cript = encoder.encode(med.getSenha());
         med.setSenha(senha_cript);
+
+        if (!validaService.validaCRM(med.getCrm())) {
+            return "falha";
+        }
 
         try {
             medicoRepository.save(med);

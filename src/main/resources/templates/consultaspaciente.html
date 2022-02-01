@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Consultas</title>
+</head>
+<body>
+
+<div>
+    <h3>Consultas Paciente</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Email</th>
+            <th>Medico</th>
+            <th>Especialidade</th>
+            <th>Descricao</th>
+            <th>Data</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="consulta:${consultas}">
+            <td th:text="${consulta.paciente.getNome()}"/>
+            <td th:text="${consulta.paciente.getEmail()}"/>
+            <td th:text="${consulta.medico.getNome()}"></td>
+            <td th:text="${consulta.medico.getEspecialidade()}"></td>
+            <td th:text="${consulta.descricao}" />
+            <td th:text="${consulta.data}"/>
+            <td th:text="${consulta.status}" />
+        </tr>
+        </tbody>
+    </table>
+    <a href="/menumedico">Menu</a>
+</div>
+
+</body>
+</html>

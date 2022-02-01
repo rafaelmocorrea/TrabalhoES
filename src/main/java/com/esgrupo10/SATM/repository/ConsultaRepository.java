@@ -38,4 +38,6 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     @Query("SELECT u FROM Consulta u WHERE u.medico = ?1 AND u.status <> ?2 AND u.data < ?3")
     List<Consulta> findNotStatusPreDateMedic(Medico m, String s, java.sql.Date data);
 
+    @Query("SELECT u FROM Consulta u WHERE u.paciente = ?1 AND u.medico = ?2 AND u.status <> ?3 ORDER BY u.data")
+    List<Consulta> findNotStatusPatientMedic(Paciente p, Medico m, String s);
 }

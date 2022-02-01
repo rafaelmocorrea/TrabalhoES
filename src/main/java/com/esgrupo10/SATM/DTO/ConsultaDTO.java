@@ -1,7 +1,10 @@
 package com.esgrupo10.SATM.DTO;
 
+import com.esgrupo10.SATM.model.InfoPagamento;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +23,7 @@ public class ConsultaDTO {
     private java.sql.Date data;
 
     private Long consulta_id;
+
+    private List<InfoPagamento> infoPagamentos;
 
 }
