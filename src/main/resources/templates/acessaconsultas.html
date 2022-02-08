@@ -13,6 +13,7 @@
     <tr>
       <th>Medico</th>
       <th>Descricao</th>
+      <th>Hora</th>
       <th>Status</th>
     </tr>
     </thead>
@@ -20,6 +21,7 @@
     <tr th:each="consulta:${consultas}">
       <td th:text="${consulta.medico.getEmail()}"></td>
       <td th:text="${consulta.descricao}" />
+      <td th:text="${consulta.hora}" />
       <td th:text="${consulta.status}" />
       <td><a th:href="@{'/menupaciente/consulta/'+${consulta.id}}" th:if="${consulta.status == 'Em andamento'}">Acessar</a></td>
     </tr>

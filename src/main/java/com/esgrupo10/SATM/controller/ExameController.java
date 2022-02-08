@@ -270,7 +270,6 @@ public class ExameController {
 
     @PostMapping("/menupaciente/exame/upload")
     public String upload(UploadDTO uploadDTO) {
-        System.out.println("Entrei aqui");
         try {
             Arquivo arq = arquivoService.salvaArquivo(uploadDTO.getFile());
             if (arq != null){
@@ -278,6 +277,7 @@ public class ExameController {
                 exame.setArquivo(arq);
                 exame.setFeito(Boolean.TRUE);
                 exameService.updateExame(exame);
+                notificacaoService.notificaExameUpload(exame.getPaciente(),exame.getMedico(),exame.getNome());
             }
             return "menupaciente";
         } catch (Exception e) {

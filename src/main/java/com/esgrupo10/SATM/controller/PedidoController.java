@@ -91,6 +91,42 @@ public class PedidoController {
         return "verpedidos";
     }
 
+    @PostMapping(value = "/menumedico/verpedidos/filtro",params = "espec")
+    public String pedidosEspecializados(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        Medico med = medicoService.encontraPorEmail(username);
+        List<PedidoConsulta> pedidos = pedidoConsultaService.listaTodosComEspecialidade(med.getEspecialidade());
+
+        model.addAttribute("pedidos",pedidos);
+
+        return "verpedidos";
+    }
+
+    @PostMapping(value = "/menumedico/verpedidos/filtro",params = "todos")
+    public String todosPedidos(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof MedicoDetails) {
+            username = ((MedicoDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        Medico med = medicoService.encontraPorEmail(username);
+        List<PedidoConsulta> pedidos = pedidoConsultaService.listaPedidos();
+
+        model.addAttribute("pedidos",pedidos);
+
+        return "verpedidos";
+    }
+
     @GetMapping("/menumedico/pedido/{pedid}")
     public String verpedido(Model model, @PathVariable Long pedid) {
         PedidoConsulta ped = pedidoConsultaService.getPedido(pedid);

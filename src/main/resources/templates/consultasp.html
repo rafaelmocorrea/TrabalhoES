@@ -20,6 +20,7 @@
       <th>Email</th>
       <th>Descricao</th>
       <th>Data</th>
+      <th>Hora</th>
       <th>Status</th>
     </tr>
     </thead>
@@ -29,8 +30,9 @@
       <td th:text="${consulta.medico.getEmail()}"/>
       <td th:text="${consulta.descricao}" />
       <td th:text="${consulta.data}"/>
+      <td th:text="${consulta.hora}"/>
       <td th:text="${consulta.status}" />
-      <td><a th:href="@{'/menupaciente/consulta/'+${consulta.id}}">Ver</a></td>
+      <td><a th:href="@{'/menupaciente/veconsulta/'+${consulta.id}}">Ver</a></td>
     </tr>
     </tbody>
   </table>

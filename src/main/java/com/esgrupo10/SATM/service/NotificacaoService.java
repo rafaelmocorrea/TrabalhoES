@@ -41,4 +41,9 @@ public class NotificacaoService {
     public void notificaExameApagado(Paciente pac, Medico med, String nome) {
         System.out.println("Email para: "+pac.getEmail()+"\nO medico "+med.getNome()+" ("+med.getEmail()+") cancelou um exame : "+nome+".");
     }
+
+    public void notificaExameUpload(Paciente pac, Medico med, String nome) {
+        System.out.println("Email para: "+med.getEmail()+"\nO paciente "+pac.getNome()+" ("+pac.getEmail()+") fez o upload do exame "+nome+".");
+    }
+
 }

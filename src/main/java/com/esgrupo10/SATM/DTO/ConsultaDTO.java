@@ -22,6 +22,8 @@ public class ConsultaDTO {
 
     private java.sql.Date data;
 
+    private String hora;
+
     private Long consulta_id;
 
     private List<InfoPagamento> infoPagamentos;

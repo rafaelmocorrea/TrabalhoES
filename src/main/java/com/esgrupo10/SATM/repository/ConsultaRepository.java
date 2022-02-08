@@ -17,10 +17,10 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     @Query("SELECT u FROM Consulta u WHERE u.medico = ?1 ORDER BY u.data")
     public List<Consulta> findAllWithMedic(Medico m);
 
-    @Query("SELECT u FROM Consulta u WHERE u.paciente = ?1 AND u.data = ?2 ORDER BY u.data")
+    @Query("SELECT u FROM Consulta u WHERE u.paciente = ?1 AND u.data = ?2 ORDER BY u.hora")
     List<Consulta> findDailyPatient(Paciente p, java.sql.Date data);
 
-    @Query("SELECT u FROM Consulta u WHERE u.medico = ?1 AND u.data = ?2 ORDER BY u.data")
+    @Query("SELECT u FROM Consulta u WHERE u.medico = ?1 AND u.data = ?2 ORDER BY u.hora")
     List<Consulta> findDailyMedic(Medico m, java.sql.Date data);
 
     @Query("SELECT u FROM Consulta u WHERE u.medico = ?1 AND u.status = ?2 ORDER BY u.data")

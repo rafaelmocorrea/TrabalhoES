@@ -8,15 +8,21 @@
 
 <div>
     <h3>Lista de Pedidos</h3>
+    <form th:action="@{'/menumedico/verpedidos/filtro'}" method="post" style="max-width: 600px; margin: 0 auto;">
+        <button type="submit" class="btn btn-primary" name="espec">Especializados</button>
+        <button type="submit" class="btn btn-primary" name="todos">Todos</button>
+    </form>
     <table>
         <thead>
         <tr>
+            <th>Paciente</th>
             <th>Descricao</th>
             <th>Especialidade</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="pedido:${pedidos}">
+            <td th:text="${pedido.paciente.getNome()}"/>
             <td th:text="${pedido.descricao}" />
             <td th:text="${pedido.especialidade}"/>
             <td><a th:href="@{'/menumedico/pedido/'+${pedido.id}}">Ver</a></td>

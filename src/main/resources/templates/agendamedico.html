@@ -15,6 +15,7 @@
       <th>Email</th>
       <th>Descricao</th>
       <th>Data</th>
+      <th>Hora</th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
       <td th:text="${consulta.paciente.getEmail()}"></td>
       <td th:text="${consulta.descricao}" />
       <td th:text="${consulta.data}" />
+      <td th:text="${consulta.hora}" />
     </tr>
     </tbody>
   </table>

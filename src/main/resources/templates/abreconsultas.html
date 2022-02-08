@@ -14,6 +14,7 @@
             <th>Paciente</th>
             <th>Descricao</th>
             <th>Status</th>
+            <th>Hora</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
             <td th:text="${consulta.paciente.getEmail()}"></td>
             <td th:text="${consulta.descricao}" />
             <td th:text="${consulta.status}" />
+            <td th:text="${consulta.hora}"/>
             <td><a th:href="@{'/menumedico/abre/'+${consulta.id}}" th:if="${consulta.status == 'Marcada'}">Abrir</a></td>
             <td><a th:href="@{'/menumedico/consulta/'+${consulta.id}}" th:if="${consulta.status == 'Em andamento'}">Acessar</a></td>
         </tr>

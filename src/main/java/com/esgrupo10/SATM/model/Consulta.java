@@ -30,6 +30,9 @@ public class Consulta {
     @Column(nullable = true)
     private String status;
 
+    @Column(nullable = false)
+    private java.sql.Time hora;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;

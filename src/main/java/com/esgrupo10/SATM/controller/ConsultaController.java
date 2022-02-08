@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -60,6 +61,7 @@ public class ConsultaController {
 
     @PostMapping("/menumedico/aceita_consulta")
     public String confirmaPedido(ConsultaDTO consultaDTO) {
+        LocalTime t = LocalTime.parse(consultaDTO.getHora());
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof MedicoDetails) {
@@ -70,13 +72,13 @@ public class ConsultaController {
 
         Medico med = medicoService.encontraPorEmail(username);
         Paciente pac = pedidoConsultaService.getPedido(consultaDTO.getPedido_id()).getPaciente();
-        System.out.println(pac.getEmail() + "   "+ med.getEmail()+ "  "+consultaDTO.getValor()+ "   AQUI<<<<<");
         Consulta consulta = new Consulta();
         consulta.setPaciente(pac);
         consulta.setMedico(med);
         consulta.setData(consultaDTO.getData());
         consulta.setValor(consultaDTO.getValor());
         consulta.setDescricao(consultaDTO.getDescricao());
+        consulta.setHora(java.sql.Time.valueOf(t));
         if (consultaDTO.getValor() > 0)
             consulta.setPaga(Boolean.FALSE);
         else
@@ -113,6 +115,7 @@ public class ConsultaController {
 
     @PostMapping("/menumedico/confirma_consulta")
     public String confirmaConsulta(ConsultaDTO consultaDTO) {
+        LocalTime t = LocalTime.parse(consultaDTO.getHora());
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof MedicoDetails) {
@@ -130,6 +133,7 @@ public class ConsultaController {
         consulta.setDescricao(consultaDTO.getDescricao());
         consulta.setData(consultaDTO.getData());
         consulta.setValor(consultaDTO.getValor());
+        consulta.setHora(java.sql.Time.valueOf(t));
         if (consultaDTO.getValor() > 0)
             consulta.setPaga(Boolean.FALSE);
         else
@@ -265,6 +269,24 @@ public class ConsultaController {
         notificacaoService.notificaConsultaCancelada(consulta.getPaciente(), consulta.getMedico(), consulta.getData());
 
         return "menumedico";
+    }
+
+    @GetMapping("/menupaciente/cancelaconsulta/{consid}")
+    public String cancelaConsultaP(@PathVariable Long consid) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof PacienteDetails) {
+            username = ((PacienteDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Paciente pac = pacienteService.encontraPorEmail(username);
+        if (!pac.getEmail().equals(consultaService.getConsulta(consid).getPaciente().getEmail())) {
+            return "405";
+        }
+        consultaService.deletaConsulta(consultaService.getConsulta(consid));
+
+        return "menupaciente";
     }
 
     @GetMapping("/menumedico/agendamedico")
@@ -469,6 +491,15 @@ public class ConsultaController {
         model.addAttribute("consultaDTO",consultaDTO);
 
         return "pagaconsulta";
+    }
+
+    @GetMapping("/menupaciente/veconsulta/{consid}")
+    public String veConsultaPac(Model model, @PathVariable Long consid) {
+        Consulta cons = consultaService.getConsulta(consid);
+
+        model.addAttribute("consulta", cons);
+
+        return "veconsultap";
     }
 
     @GetMapping("/menumedico/paccons/{pacid}")

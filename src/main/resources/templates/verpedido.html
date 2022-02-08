@@ -12,7 +12,7 @@
         <tbody>
         <tr>
             <td>Nome do paciente:</td>
-            <td th:text="${pedidoDTO.paciente_nome}" />
+            <td><a th:text="${pedidoDTO.paciente_nome}" th:target="_blank" th:href="@{'/menumedico/paciente/'+${pedidoDTO.paciente_id}}"/></td>
         </tr>
         <tr>
             <td>CPF:</td>
