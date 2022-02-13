@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Pedido Sucesso</title>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/css/menustyle.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<h3>Pedido criado com sucesso!</h3>
-<a href="/menupaciente">Menu</a>
+<header>
+    <nav>
+        <a class="logo" href="#">
+            <span class="logo-char">G</span>
+            <span class="logo-char">R</span>
+            <span class="logo-char">U</span>
+            <span class="logo-char">P</span>
+            <span class="logo-char">O</span>
+            <span class="logo-char">1</span>
+            <span class="logo-char">0</span>
+        </a>
+        <ul class="menu">
+            <li class="item"><a href="/">Inicio</a></li>
+            <li class="item"><a href="/">Sobre</a></li>
+            <li class="item"><a href="/">Serviços</a></li>
+            <li class="item"><a href="/">Suporte</a></li>
+        </ul>
+        <form>
+            <button th:formaction="@{/logout}" class="modal-button">Logout</button>
+        </form>
+    </nav>
+</header>
+
+<div class="fmenu">
+    <div class="title-text">
+        <div class="title mtitle">
+            Pedido criado!
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="form-inner">
+            <form class="pmenu">
+                <div class=""><a href="/menupaciente">Menu</a></div>
+            </form>
+            <div class="bmenu"><a href="#">Menu</a></div>
+        </div>
+    </div>
+</div>
+
+<footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">
+</footer>
 </body>
 </html>

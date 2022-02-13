@@ -534,4 +534,14 @@ public class ConsultaController {
         return "consultap";
     }
 
+    @GetMapping("/menumedico/menuconsulta")
+    public String menuConsultMedico() {
+        return "menuconsultam";
+    }
+
+    @GetMapping("/menupaciente/menuconsulta")
+    public String menuConsultaPaciente() {
+        return "menuconsultap";
+    }
+
 }

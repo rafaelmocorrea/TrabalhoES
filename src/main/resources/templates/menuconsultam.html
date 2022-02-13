@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Cadastra Consulta</title>
+    <meta charset="UTF-8">
+    <title>Menu Consultas</title>
     <meta name="viewport" content="with=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -25,7 +25,7 @@
         <ul class="menu">
             <li class="item"><a href="/">Inicio</a></li>
             <li class="item"><a href="/">Sobre</a></li>
-            <li class="item"><a href="/">Serviços</a></li>
+            <li class="item"><a href="/">ServiÃ§os</a></li>
             <li class="item"><a href="/">Suporte</a></li>
         </ul>
         <form>
@@ -33,41 +33,25 @@
         </form>
     </nav>
 </header>
-
-<div class="container text-center">
-    <div>
-        <h1>TESTE PEDIDO CONSULTA</h1>
-    </div>
-    <form th:action="@{/menupaciente/pedido_registro}" th:object="${pedidoconsulta}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
-        <div class="m-3">
-
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Descrição: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{descricao}" class="form-control"
-                           required minlength="2" maxlength="20"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Especialidade requerida: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{especialidade}" class="form-control"
-                           required minlength="2" maxlength="20"/>
-                </div>
-            </div>
-
-
-            <div>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </div>
+<div class="fmenu">
+    <div class="title-text">
+        <div class="title mtitle">
+            Menu Consultas
         </div>
-    </form>
+    </div>
+    <div class="form-container">
+        <div class="form-inner">
+            <form class="pmenu">
+                <div class=""><a href="/menumedico/verpedidos">Pedidos</a></div>
+                <div class=""><a href="/menumedico/agendaconsulta">Marcar</a></div>
+                <div class=""><a href="/menumedico/abrirconsulta">Acessar</a></div>
+                <div class=""><a href="/menumedico/gerenciarconsultas">Gerenciar</a></div>
+                <div class=""><a href="/menumedico">Voltar</a></div>
+            </form>
+            <div class="bmenu"><a href="#">Menu</a></div>
+        </div>
+    </div>
 </div>
-<div class="container text-center">
-    <h3><a href="/menupaciente">Menu</a></h3>
-</div>
-
 <footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">
 </footer>
 </body>

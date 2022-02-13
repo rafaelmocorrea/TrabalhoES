@@ -1,17 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/css/menustyle.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<div class="container text-center">
-    <h1>TESTE MENU</h1>
-    <h3><a href="/soupac">Sou Paciente</a></h3>
-    <h3><a href="/soumed">Sou Médico</a></h3>
+<header>
+    <nav>
+        <a class="logo" href="#">
+            <span class="logo-char">G</span>
+            <span class="logo-char">R</span>
+            <span class="logo-char">U</span>
+            <span class="logo-char">P</span>
+            <span class="logo-char">O</span>
+            <span class="logo-char">1</span>
+            <span class="logo-char">0</span>
+        </a>
+        <ul class="menu">
+            <li class="item"><a href="/">Inicio</a></li>
+            <li class="item"><a href="/">Sobre</a></li>
+            <li class="item"><a href="/">Serviços</a></li>
+            <li class="item"><a href="/">Suporte</a></li>
+        </ul>
+        <form>
+            <button th:formaction="@{/logout}" class="modal-button">Logout</button>
+        </form>
+    </nav>
+</header>
+<div class="fmenu">
+    <div class="title-text">
+        <div class="title mtitle">
+            Menu
+        </div>
+        <div class="title atitle">
+            Sou Paciente
+        </div>
+        <div class="title ctitle">
+            Sou Médico
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="form-inner">
+            <form class="pmenu">
+                <div><a href="/soupac">Paciente</a></div>
+                <div><a href="/soumed">Médico</a></div>
+            </form>
+            <div class="bmenu"><a href="#">Menu</a></div>
+        </div>
+    </div>
 </div>
+
+<footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">
+
+</footer>
 </body>
 </html>

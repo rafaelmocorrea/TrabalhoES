@@ -1,26 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MENU MÉDICO</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <title>Menu Médico</title>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/css/menustyle.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-  <p>MENU MÉDICO EM CONSTRUÇÃO</p>
-  <div class="container text-center">
-      <h1>TESTE SOU MEDICO</h1>
-      <h3><a href="/menumedico/agendamedico">Agenda</a></h3>
-      <h3><a href="/menumedico/verpedidos">Ver Pedidos de Consulta</a></h3>
-      <h3><a href="/menumedico/agendaconsulta">Agendar Consulta</a> </h3>
-      <h3><a href="/menumedico/abrirconsulta">Consultas do Dia</a></h3>
-      <h3><a href="/menumedico/gerenciarconsultas">Gerenciar Consultas</a></h3>
-      <h3><a href="/menumedico/precrreceita">Prescrever Receita</a></h3>
-      <h3><a href="/menumedico/reqexame">Requisitar Exames</a></h3>
-      <h3><a href="/menumedico/acessarexames">Acessar Exames</a></h3>
-      <h3><a href="/menumedico/minhaconta">Administrar Conta</a></h3>
-      <h3><a href="/logout">Logout</a></h3>
-  </div>
+<header>
+    <nav>
+        <a class="logo" href="#">
+            <span class="logo-char">G</span>
+            <span class="logo-char">R</span>
+            <span class="logo-char">U</span>
+            <span class="logo-char">P</span>
+            <span class="logo-char">O</span>
+            <span class="logo-char">1</span>
+            <span class="logo-char">0</span>
+        </a>
+        <ul class="menu">
+            <li class="item"><a href="/">Inicio</a></li>
+            <li class="item"><a href="/">Sobre</a></li>
+            <li class="item"><a href="/">Serviços</a></li>
+            <li class="item"><a href="/">Suporte</a></li>
+        </ul>
+        <form>
+            <button th:formaction="@{/logout}" class="modal-button">Logout</button>
+        </form>
+    </nav>
+</header>
+<div class="fmenu">
+    <div class="title-text">
+        <div class="title mtitle">
+            Menu Medico
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="form-inner">
+            <form class="pmenu">
+                <div class=""><a href="/menumedico/agendamedico">Agenda</a></div>
+                <div class=""><a href="/menumedico/menuconsulta">Consultas</a></div>
+                <div class=""><a href="/menumedico/precrreceita">Receitas</a></div>
+                <div class=""><a href="/menumedico/menuexame">Exames</a></div>
+                <div class=""><a href="/menumedico/minhaconta">Conta</a></div>
+            </form>
+            <div class="bmenu"><a href="#">Menu</a></div>
+        </div>
+    </div>
+</div>
+<footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">
+</footer>
 </body>
 </html>

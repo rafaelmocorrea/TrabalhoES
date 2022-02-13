@@ -1,0 +1,345 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* body {
+  width: 100%;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+* body header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  background-color: #1BF2A3;
+}
+
+* body header nav a.logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  text-decoration: none;
+  max-width: 10%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+* body header nav a.logo span.logo-char {
+  background: #fff;
+  padding: 0.2rem;
+  margin: 0 0.2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #1BF2A3;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+* body header nav ul.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  max-width: 50%;
+  list-style-type: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+* body header nav ul.menu li {
+  margin: 0 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: center;
+}
+
+* body header nav ul.menu li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+* body header nav button.modal-button {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1BF2A3;
+  border: none;
+  border-radius: 0.4em;
+  cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  * body header nav a.logo {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0;
+  }
+  * body header nav ul.menu li.item {
+    display: none;
+  }
+  * body header nav button.modal-button {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+
+* body div.modal {
+  position: fixed;
+  z-index: 1;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+* body div.modal div.modal-content {
+  position: relative;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -61%);
+          transform: translate(-50%, -61%);
+  height: 400px;
+  width: 25%;
+  padding: 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  -webkit-transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* body div.modal div.modal-content div.form-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 200%;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form {
+  width: 50%;
+  -webkit-transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.tab {
+  display: none;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.tab.medico {
+  height: 55vh;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.tab.medico div.field {
+  width: 49%;
+  display: inline-block;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.tab.medico div.field input[type="submit"] {
+  -webkit-transform: translate(50%, 30%);
+          transform: translate(50%, 30%);
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.user-select {
+  display: block;
+  width: 100%;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.user-select div.item-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.user-select div.item-user p {
+  width: 100%;
+  font-size: 1vw;
+  text-align: center;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.user-select div.item-user a {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 5px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 1vw;
+  font-weight: 600;
+  padding: 7.5px 0;
+  background: -webkit-gradient(linear, left top, right top, from(#1BF2A3), to(aqua)), -webkit-linear-gradient(left, #1BF2A3, aqua);
+  background: linear-gradient(left, #1BF2A3, aqua), -webkit-linear-gradient(left, #1BF2A3, aqua);
+  text-decoration: none;
+  color: #fff;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.signup div.user-select div.item-user a:hover {
+  background: -webkit-gradient(linear, left top, right top, from(aqua), to(#1BF2A3)), -webkit-linear-gradient(left, aqua, #1BF2A3);
+  background: linear-gradient(left, aqua, #1BF2A3), -webkit-linear-gradient(left, aqua, #1BF2A3);
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.title, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.title {
+  width: 100%;
+  font-size: 2.2vw;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field {
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field input, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  font-size: 1vw;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-bottom-width: 2px;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field input[type="submit"], * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field input[type="submit"] {
+  color: #fff;
+  font-size: 1.6vw;
+  font-weight: 500;
+  padding-left: 0;
+  border: none;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#1BF2A3), to(aqua)), -webkit-linear-gradient(left, #1BF2A3, aqua);
+  background: linear-gradient(left, #1BF2A3, aqua), -webkit-linear-gradient(left, #1BF2A3, aqua);
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field input[type="submit"]:hover, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field input[type="submit"]:hover {
+  background: -webkit-gradient(linear, left top, right top, from(aqua), to(#1BF2A3)), -webkit-linear-gradient(left, aqua, #1BF2A3);
+  background: linear-gradient(left, aqua, #1BF2A3), -webkit-linear-gradient(left, aqua, #1BF2A3);
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field input:focus, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field input:focus {
+  border-bottom-color: #1BF2A3;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field i, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field i {
+  margin-left: -35px;
+  cursor: pointer;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field.check-terms, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field.check-terms {
+  display: block;
+  position: relative;
+  font-size: 0.8vw;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field.check-terms p, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field.check-terms p {
+  margin-left: 30px;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field.check-terms p a, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field.check-terms p a {
+  text-decoration: none;
+  color: #1BF2A3;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field.check-terms p a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field.check-terms p a:hover {
+  text-decoration: underline;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.field.check-terms input[type="checkbox"], * body div.modal div.modal-content div.form-container div.form-inner form.signup div.field.check-terms input[type="checkbox"] {
+  position: absolute;
+  height: 2vh;
+  width: 2vh;
+  cursor: pointer;
+  accent-color: #1BF2A3;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.pass-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.pass-link {
+  margin-top: 5px;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.signup-link, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link1, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.signup-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link1 {
+  text-align: center;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link1, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link1 {
+  margin-top: 10px;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.signup-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.signup-link {
+  margin-top: 30px;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.pass-link, * body div.modal div.modal-content div.form-container div.form-inner form.login div.signup-link, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link1, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.pass-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.signup-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link1 {
+  font-size: 1vw;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.pass-link a, * body div.modal div.modal-content div.form-container div.form-inner form.login div.signup-link a, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link a, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link1 a, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.pass-link a, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.signup-link a, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link a, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link1 a {
+  color: #1BF2A3;
+  text-decoration: none;
+}
+
+* body div.modal div.modal-content div.form-container div.form-inner form.login div.pass-link a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.login div.signup-link a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.login div.login-link1 a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.pass-link a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.signup-link a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link a:hover, * body div.modal div.modal-content div.form-container div.form-inner form.signup div.login-link1 a:hover {
+  text-decoration: underline;
+}
+
+* body main {
+  z-index: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80vh;
+}
+
+* body main section.banner {
+  max-width: 100%;
+}
+
+* body main section.banner div.cube {
+  text-align: center;
+  color: #cecece;
+}
+
+* body main section.banner div.cube h2 {
+  font-size: 6vw;
+}
+
+* body main section.banner div.cube h2 span {
+  background: #1BF2A3;
+  color: #fff;
+  padding: 1vw;
+}
+/*# sourceMappingURL=homestyle.css.map */

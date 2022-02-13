@@ -328,4 +328,10 @@ public class ExameController {
 
         return "examespaciente";
     }
+
+    @GetMapping("/menumedico/menuexame")
+    public String menuExameMedico() {
+        return "menuexamem";
+    }
+
 }

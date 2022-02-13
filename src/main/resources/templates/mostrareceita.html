@@ -1,10 +1,38 @@
 <!DOCTYPE html>
+<html lang="pt-br">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>RECEITA</title>
+  <title>Receita</title>
+  <meta name="viewport" content="with=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/css/menustyle.css}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
+<header>
+  <nav>
+    <a class="logo" href="#">
+      <span class="logo-char">G</span>
+      <span class="logo-char">R</span>
+      <span class="logo-char">U</span>
+      <span class="logo-char">P</span>
+      <span class="logo-char">O</span>
+      <span class="logo-char">1</span>
+      <span class="logo-char">0</span>
+    </a>
+    <ul class="menu">
+      <li class="item"><a href="/">Inicio</a></li>
+      <li class="item"><a href="/">Sobre</a></li>
+      <li class="item"><a href="/">Serviços</a></li>
+      <li class="item"><a href="/">Suporte</a></li>
+    </ul>
+    <form>
+      <button th:formaction="@{/logout}" class="modal-button">Logout</button>
+    </form>
+  </nav>
+</header>
 
 <div>
   <h3>Receita</h3>
@@ -35,5 +63,7 @@
   <a href="/menupaciente/gerenciarreceitas">Voltar</a>
 </div>
 
+<footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">
+</footer>
 </body>
 </html>

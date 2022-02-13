@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Exibe exames</title>
+  <title>Menu Consultas</title>
   <meta name="viewport" content="with=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -33,34 +33,25 @@
     </form>
   </nav>
 </header>
-
-<div>
-  <h3>Exibe Exames</h3>
-  <table>
-    <thead>
-    <tr>
-      <th>Paciente</th>
-      <th>Email</th>
-      <th>Nome</th>
-      <th>Data</th>
-      <th>Feito</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="exame:${exames}">
-      <td th:text="${exame.paciente.getNome()}"/>
-      <td th:text="${exame.paciente.getEmail()}"/>
-      <td th:text="${exame.nome}" />
-      <td th:text="${exame.data}"/>
-      <td th:text ="SIM" th:if="${exame.feito == True}"/>
-      <td th:text ="NAO" th:if="${exame.feito == False}"/>
-      <td><a th:href="@{'/menumedico/exame/'+${exame.id}}">Ver</a></td>
-    </tr>
-    </tbody>
-  </table>
-  <a href="/menumedico">Menu</a>
+<div class="fmenu">
+  <div class="title-text">
+    <div class="title mtitle">
+      Menu Consultas
+    </div>
+  </div>
+  <div class="form-container">
+    <div class="form-inner">
+      <form class="pmenu">
+        <div class=""><a href="/menupaciente/pedidoconsulta">Requisitar</a></div>
+        <div class=""><a href="/menupaciente/gerenciarpedidos">Pedidos</a></div>
+        <div class=""><a href="/menupaciente/acessarconsultas">Acessar</a></div>
+        <div class=""><a href="/menupaciente/gerenciarconsultas">Gerenciar</a></div>
+        <div class=""><a href="/menupaciente">Voltar</a></div>
+      </form>
+      <div class="bmenu"><a href="#">Menu</a></div>
+    </div>
+  </div>
 </div>
-
 <footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">
 </footer>
 </body>
