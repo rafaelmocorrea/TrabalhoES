@@ -33,21 +33,33 @@
         </form>
     </nav>
 </header>
-<form th:action="@{/login}" method="post">
-    <fieldset>
-        <legend>Insira suas credenciais</legend>
-        <div th:if="${param.error}" class="alert alert-error">
-            Credenciais Inválidas.
+<div class="fmenu">
+    <div class="title-text">
+        <div class="title mtitle">
+            Acessar Conta
         </div>
-        <label for="email">E-mail</label>
-        <input type="text" id="email" name="email">
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password">
-        <div class="form-actions">
-            <button type="submit" class="btn">Entrar</button>
+    </div>
+    <div class="form-container">
+        <div class="form-inner">
+            <form th:action="@{/login}" method="post" class="login">
+
+                    <div th:if="${param.error}" class="alert alert-error">
+                        Credenciais Inválidas.
+                    </div>
+                    <div class="field">
+                    <input type="text" id="email" name="email" placeholder="E-mail">
+                    </div>
+                    <div class="field">
+                    <input type="password" id="password" name="password" placeholder="Senha">
+                    </div>
+                    <br>
+                    <div class="field">
+                        <button type="submit">Entrar</button>
+                    </div>
+            </form>
         </div>
-    </fieldset>
-</form>
+    </div>
+</div>
 <footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">
 </footer>
 </body>

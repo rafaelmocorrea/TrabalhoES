@@ -23,52 +23,41 @@
       <span class="logo-char">0</span>
     </a>
     <ul class="menu">
-      <li class="item"><a href="/">Inicio</a></li>
-      <li class="item"><a href="/">Sobre</a></li>
-      <li class="item"><a href="/">Serviços</a></li>
-      <li class="item"><a href="/">Suporte</a></li>
+      <li class="item"><a href="/menumedico">Inicio</a></li>
     </ul>
     <form>
       <button th:formaction="@{/logout}" class="modal-button">Logout</button>
     </form>
   </nav>
 </header>
-
-<div class="container text-center">
-  <div>
-    <h1>TESTE Metodo</h1>
-  </div>
-  <form th:action="@{/menumedico/addmetodo/}" th:object="${metodo}"
-        method="post" style="max-width: 600px; margin: 0 auto;">
-    <div class="m-3">
-      <div class ="form-group row">
-        <label class="col-4 col-form-label">Nome:</label>
-        <div class="col-8">
-          <input type="text" th:field="*{nome}" class="form-control"/>
-        </div>
-      </div>
-      <div class ="form-group row">
-        <label class="col-4 col-form-label">Link plataforma externa:</label>
-        <div class="col-8">
-          <input type="text" th:field="*{stringPExterna}" class="form-control"/>
-        </div>
-      </div>
-      <div class ="form-group row">
-        <label class="col-4 col-form-label">Conta banco:</label>
-        <div class="col-8">
-          <input type="text" th:field="*{contaBanco}" class="form-control"/>
-        </div>
-      </div>
-      <input type="hidden" th:field="*{id}" th:value="${metodo.id}"/>
-      <input type="hidden" th:field="*{medico}" th:value="${metodo.medico}"/>
-
-      <button type="submit" class="btn btn-primary">Adicionar Metodo</button>
-
+<div class="fmenu">
+  <div class="title-text">
+    <div class="title mtitle">
+      Metodo de Recebimento
     </div>
-  </form>
-</div>
-<div class="container text-center">
-  <h3><a href="/menumedico">Menu</a></h3>
+  </div>
+  <div class="form-container">
+    <div class="form-inner">
+      <form th:action="@{/menumedico/addmetodo/}" th:object="${metodo}" method="post" class="login">
+        <div class="field">
+          <input type="text" th:field="*{nome}" placeholder="Nome"/>
+        </div>
+        <div class="field">
+          <input type="text" th:field="*{stringPExterna}" placeholder="Plataforma"/>
+        </div>
+        <div class="field">
+          <input type="text" th:field="*{contaBanco}" placeholder="Conta Banco"/>
+        </div>
+        <input type="hidden" th:field="*{id}" th:value="${metodo.id}"/>
+        <input type="hidden" th:field="*{medico}" th:value="${metodo.medico}"/>
+        <br>
+        <div class="field">
+          <button type="submit">Adicionar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
 </div>
 
 <footer style="bottom: 0; width: 100%; text-align: center; color: #fff; font-weight: 600; padding: 40px; background: #1BF2A3; height: 50px; position: absolute;">

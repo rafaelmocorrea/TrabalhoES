@@ -187,6 +187,18 @@
   background: linear-gradient(left, #1BF2A3, aqua), -webkit-linear-gradient(left, #1BF2A3, aqua);
 }
 
+* body div.fmenu div.form-container div.form-inner form div.field button {
+  color: #fff;
+  font-weight: 600;
+  padding: 1vw 0;
+  width: 20%;
+  border: none;
+  border-radius:12px;
+  position: relative;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#1BF2A3), to(aqua)), -webkit-linear-gradient(left, #1BF2A3, aqua);
+}
+
 * body div.fmenu div.form-container div.form-inner form.pmenu {
   display: -webkit-box;
   display: -ms-flexbox;
